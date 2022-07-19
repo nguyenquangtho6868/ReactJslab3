@@ -1,18 +1,20 @@
 import React from "react";
 import { Card, CardImg, CardText, CardBody, CardTitle } from "reactstrap";
 
-function renderDish({ dish }) {
+function RenderDish({ dish }) {
   return (
     <div className="col-12 col-md-5 m-1">
       <Card>
         <CardImg width="100%" src={dish.image} value={dish.name} />
         <CardBody>
           <CardTitle>{dish.name}</CardTitle>
+          <CardText>{dish.description}</CardText>
         </CardBody>
       </Card>
     </div>
   );
 }
+
 function RenderComments({ comments }) {
   if (comments != null) {
     return (
@@ -38,12 +40,13 @@ function RenderComments({ comments }) {
 }
 
 const DishDetail = (props) => {
-  if (this.props.dish != null) {
+  console.log(props.dish);
+  if (props.dish != null) {
     return (
       <div className="container">
         <div className="row">
-          {this.renderDish(this.props.dish)}
-          {this.RenderComments(this.props.dish.comments)}
+          <RenderDish dish={props.dish} />
+          <RenderComments comments={props.dish.comments} />
         </div>
       </div>
     );
